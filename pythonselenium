@@ -1,0 +1,50 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
+
+
+chromedriver = 'C:/Users/xxxxxxxxx'
+
+
+
+username = 'xxxxxxxxx'
+
+def login_twitter(username, password):
+    driver = webdriver.Chrome(chromedriver)
+    driver.get('https://twitter.com/xxxxxxx/following')
+
+    username_field = driver.find_element_by_class_name("js-username-field")
+    password_field = driver.find_element_by_class_name("js-password-field")
+
+    username_field.send_keys(username)
+    driver.implicitly_wait(1)
+    
+    password_field.send_keys(password)
+    driver.implicitly_wait(1)
+
+    driver.find_element_by_class_name("EdgeButtom--medium").click()
+
+    #elm = driver.find_elements_by.xpath, ('//button[@class="user-actions-follow-button js-follow-btn follow-button btn small small-follow-btn"]')
+
+    gettinitin = driver.find_element_by_tag_name('html')
+    for i in range(0,4):
+        gettinitin.send_keys(Keys.END)
+        time.sleep(1)
+    gettinitin.send_keys(Keys.HOME)
+
+    header = driver.find_elements_by_class_name("ProfileCard-content")
+
+    for x in range (0, 100):
+        try:
+            header[x].find_element_by_class_name("FollowStatus")
+        except NoSuchElementException:
+            print('does not exist, unfollowing')
+            toclick = header[x].find_element_by_class_name("user-actions-follow-button")
+            toclick.click()
+            time.sleep(2)
+        
+
+
+
+
+login_twitter(username, 'xxxxxxxxx'
